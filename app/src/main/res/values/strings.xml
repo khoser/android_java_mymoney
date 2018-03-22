@@ -1,9 +1,116 @@
 <resources>
     <string name="app_name">My money</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="hello_world">Hello world!</string>
+
     <string name="action_settings">Settings</string>
+    <string name="action_exit">Exit</string>
+
+    <string name="cash">Остаток</string>
+    <string name="purse">Кошелек:</string>
+    <string name="purseto">В кошелек:</string>
+    <string name="itemin">Статья дохода:</string>
+    <string name="itemout">Статья расхода:</string>
+    <string name="sum">Сумма:</string>
+    <string name="sumin">Сумма получено:</string>
+    <string name="num">Количество:</string>
+    <string name="comment">Комментарий:</string>
+    <string name="credit">Долг:</string>
+    <string name="contact">Контакт:</string>
+    <string name="sumpercent">Сумма процентов:</string>
+    <string name="othersum">Сумма доп. расходов:</string>
+
+    <string name="newCredit">добавить новый кредит</string>
+    <string name="newContact">добавить новый контакт</string>
+
+    <string name="write">Учесть</string>
+    <string name="read">Синхронизировать</string>
+    <string name="action">Действие</string>
+
+    <string name="auth_settings">Авторизация на веб-сервисе 1С</string>
+    <string name="login">Логин:</string>
+    <string name="url">URL:</string>
+    <string name="pass">Пароль:</string>
+    <string name="okey">ок</string>
+
+    <string name="defaulturl">&lt;---</string>
+
+    <string name="in">in</string>
+    <string name="out">out</string>
+    <string name="betwean">betwean</string>
+
+    <string name="SOAP_ACTION">http://money.kter.ru#kter_ru:Android</string>
+    <string name="SOAP_METHOD_NAME">Android</string>
+    <string name="defaultURL">http://myhost/money/ws/ws1.1cws</string>
+    <string name="NAMESPACE">http://money.kter.ru</string>
+    <string name="SOAP_ACTION2">http://money.kter.ru#kter_ru:Android_out1</string>
+    <string name="SOAP_METHOD_NAME2">Android_out1</string>
+    <string name="SOAP_ACTION3">http://money.kter.ru#kter_ru:Android_out2</string>
+    <string name="SOAP_METHOD_NAME3">Android_out2</string>
+    <string name="SOAP_ACTION4">http://money.kter.ru#kter_ru:Android_out3</string>
+    <string name="SOAP_METHOD_NAME4">Android_out3</string>
+    <string name="SOAP_property_actions">actions</string>
+    <string name="SOAP_property_what">what</string>
+    <string name="SOAP_property_param">param</string>
+    <string name="SOAP_Auth">Authorization</string>
+
+    <string name="DIR_SD">MyMoney</string>
+    <string name="FileName_actions">actions.txt</string>
+    <string name="FileName_LastActions">last_params.txt</string>
+    <string name="FileName_pursesbalances">pursesbalances.txt</string>
+    <string name="FileName_purses">purses.txt</string>
+    <string name="FileName_initems">in_items.txt</string>
+    <string name="FileName_outitems">out_items.txt</string>
+    <string name="BAD_SD">Bad SD</string>
+    <string name="FileNotFound">file not found</string>
+    <string name="auth_file">auth_file.txt</string>
+    <string name="FileName_credits">credits.txt</string>
+    <string name="FileName_creditscontacts">credits_contacts.txt</string>
+    <string name="FileName_contacts">contacts.txt</string>
+    <string name="FileName_pursescurrencies">pursescurrencies.txt</string>
+
+    <string name="Semicolon">;</string>
+    <string name="colon">:</string>
+    <string name="Coma">,</string>
+    <string name="Dot">.</string>
+    <string name="Slash">/</string>
+    <string name="tudasuda">&lt;></string>
+    <string name="dgts">-0123456789.</string>
+
+    <string name="Synchronized">Синхронизировано!</string>
+    <string name="SmthGoWrong">Что-то пошло не так!</string>
+    <string name="NotAllFieldsFilled">Заполнены не все поля!</string>
+    <string name="Taken">Учтено!</string>
+
+    <string-array name="inout">
+        <item>in</item>
+        <item>out</item>
+        <item>betwean</item>
+        <item>ОбменВалюты</item>
+    </string-array>
+    <string-array name="imnum">
+        <item>МыВернулиДолг</item>
+        <item>МыВзялиВДолг</item>
+        <item>МыДалиВДолг</item>
+        <item>НамВернулиДолг</item>
+    </string-array>
+
+    <string-array name="screen_array">
+        <item>По умолчанию</item>
+        <item>Долги</item>
+        <item>Отчеты</item>
+        <item>Настройки</item>
+        <item>Выход</item>
+        <item></item>
+        <item>Синхронизировать</item>
+    </string-array>
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <string name="day">День</string>
+    <string name="week">Неделя</string>
+    <string name="month">Месяц</string>
+    <string name="year">Год</string>
+    <string name="makeReport">Сформировать</string>
 </resources>
