@@ -1,5 +1,10 @@
 package com.example.ktu.myapplication;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,7 +19,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+//public class MainActivity extends Activity
+        implements NavigationView.OnNavigationItemSelectedListener,// PocketInterface,
+        fragment_default.fragment_defaultInterface, fragment_dolg.fragment_dolgInterface, fragment_report.fragment_ReportInterface,
+        fragment_report_buttons.fragment_report_buttonsInterface {
+
+    private int selectedScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,6 +41,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -68,6 +79,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            authform();
             return true;
         }
 
@@ -80,17 +92,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.nav_inout) {
+            setScreen(0);
+        } else if (id == R.id.nav_credit) {
+            setScreen(1);
+        } else if (id == R.id.nav_report) {
+            setScreen(2);
+        } else if (id == R.id.nav_settings) {
+            authform();
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_sync) {
 
         }
 
@@ -98,4 +110,122 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public void authform() {
+        Intent intent = new Intent(MainActivity.this, AuthActivity.class);
+        startActivity(intent);
+    }
+
+    private void setScreen(int position) {
+        selectedScreen = position;
+        Fragment fr = getFragmentManager().findFragmentById(R.id.mainFrame);
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new fragment_default();
+                break;
+            case 1:
+                fragment = new fragment_dolg();
+                break;
+            case 2:
+                fragment = new fragment_report_buttons();
+                break;
+            case -1: //webview для вывода отчета кагбэ почти на весь экран
+                fragment = new fragment_report();
+                break;
+            default:
+                break;
+        }
+
+        FragmentManager FM = getFragmentManager();
+        FragmentTransaction ft = FM.beginTransaction();
+        // Insert the fragment by replacing any existing fragment
+        if (fragment != null) {
+            ft.replace(R.id.mainFrame, fragment);
+        } else {
+            ft.remove(fr);
+        }
+        //if (position == -1 || position == 2) ft.addToBackStack(null);
+        ft.commit();
+
+    }
+    @Override
+    public void atAttache() {
+        FillFrame();
+    }
+
+    private void FillFrame() {
+        Fragment fr = getFragmentManager().findFragmentById(R.id.mainFrame);
+//        switch (selectedScreen) {
+//            case -1:
+//                MyPockets.doReport(numberOfReport);
+//                break;
+//
+//            case  2:
+//                Button btn_report = (Button) fr.getView().findViewById(R.id.btnReport);
+//                btn_report.setOnClickListener(new OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Fragment fr = getFragmentManager().findFragmentById(R.id.mainFrame);
+//                        RadioGroup rgrp = (RadioGroup) fr.getView().findViewById(R.id.rgrp);
+//                        switch (rgrp.getCheckedRadioButtonId()) {
+//                            case R.id.rbtn1:
+//                                numberOfReport = 1;
+//                                break;
+//                            case R.id.rbtn2:
+//                                numberOfReport = 2;
+//                                break;
+//                            case R.id.rbtn3:
+//                                numberOfReport = 3;
+//                                break;
+//                            case R.id.rbtn4:
+//                                numberOfReport = 4;
+//                                break;
+//                        }
+//                        setScreen(-1);
+//                    }
+//                });
+//                WebView WVblnc = (WebView) fr.getView().findViewById(R.id.webBalance);
+//                WVblnc.loadDataWithBaseURL("", MyPockets.HTMLBalances(), "text/html", "utf8", "");
+//                break;
+//            default:
+//                Spinner sp_action = (Spinner) fr.getView().findViewById(R.id.spinner_action);
+//                Spinner sp_purse = (Spinner) fr.getView().findViewById(R.id.spinner_purse);
+//                Button btn_ok = (Button) fr.getView().findViewById(R.id.btn_ok);
+//
+//                sp_action.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        fillDataByAction(selectedScreen * 4 + position);
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> arg0) {
+//                    }
+//                });
+//                sp_purse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        ShowCash(parent.getSelectedItem().toString());
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> arg0) {
+//                    }
+//                });
+//
+//                sp_action.setSelection(MyPockets.getLastAction("Action") % 4);
+//
+//                btn_ok.setOnClickListener(new OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        TakeInToAccount();
+//                    }
+//                });
+//                break;
+//        }
+    }
+
 }

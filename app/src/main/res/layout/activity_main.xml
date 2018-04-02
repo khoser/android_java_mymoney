@@ -8,10 +8,27 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
+    <!--include
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" /-->
+
+    <FrameLayout
+        android:id="@+id/mainFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+    </FrameLayout>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

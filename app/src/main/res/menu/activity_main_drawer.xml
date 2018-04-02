@@ -5,19 +5,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_inout"
             android:icon="@drawable/ic_menu_camera"
-            android:title="InOut" />
+            android:title="По умолчанию" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_credit"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Долги" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_report"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Отчеты" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_manage"
             android:title="Настройки" />
     </group>
@@ -30,7 +30,7 @@
                 android:title="Поделиться"
                 android:enabled="false"/>
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_sync"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Синхронизировать" />
         </menu>
