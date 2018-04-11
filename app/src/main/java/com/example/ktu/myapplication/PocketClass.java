@@ -1,8 +1,10 @@
 package com.example.ktu.myapplication;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.provider.CalendarContract;
 import android.widget.ArrayAdapter;
 
 
@@ -27,6 +29,7 @@ import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.SortedMap;
 import java.util.Vector;
 
@@ -1085,11 +1088,13 @@ public class PocketClass {
     public String HTMLBalances() {
         Map<String, String> map_pursesCurrencys = new Hashtable<String, String>();
         Map<String, Double> map_Currencystotal = new Hashtable<String, Double>();
+        Map<String, String> map_Currencyscolor = new Hashtable<String, String>();
         String[] tmp_pс;
         ArrayList<String> sl_pc = readFileToStringList(MainContext.getString(R.string.FileName_pursescurrencies));
         tmp_pс = sl_pc.toArray(new String[sl_pc.size()]);
         map_pursesCurrencys.clear();
         map_Currencystotal.clear();
+        map_Currencyscolor.clear();
         for (String pb : tmp_pс) {
             if (pb.isEmpty()) continue;
             if (!pb.contains("/")) continue;
@@ -1103,6 +1108,7 @@ public class PocketClass {
                 "<table width=100% border=1 cellspacing=0>";
         double local;
         double total;
+        int clri = 0;
         //String prs;
         String[] entrst = map_pursesbalances.keySet().toArray(new String[map_pursesbalances.keySet().size()]);
         Arrays.sort(entrst);
@@ -1110,10 +1116,20 @@ public class PocketClass {
             //prs = entry.getKey();
             local =  map_pursesbalances.get(prs);
             String crnc = new String();
+            String crncolor = new String();
             try {
                 crnc = map_pursesCurrencys.get(prs);
             } catch (Exception e) {}
-            rslt = rslt + "<tr><td>" + prs + ", " + crnc + "</td><td align=right><nobr>" +String.valueOf(local) + "</nobr></td></tr>";
+            try {
+                crncolor = map_Currencyscolor.get(crnc);
+            } catch (Exception e) {}
+            if (crncolor == null) {
+                crncolor = getpursecolor(clri);
+                map_Currencyscolor.put(crnc,crncolor);
+                clri+=1;
+                if (clri == 10) {clri=0;}
+            }
+            rslt = rslt + "<tr><td bgcolor='" + crncolor + "'>" + prs + ", " + crnc + "</td><td align=right bgcolor='" + crncolor + "'><nobr>" +String.valueOf(local) + "</nobr></td></tr>";
             total = 0;
             try {
                 total = map_Currencystotal.get(crnc);
@@ -1122,11 +1138,31 @@ public class PocketClass {
         }
         rslt = rslt + "</table><br>Финансовый результат<br><table width=100% border=1 cellspacing=0>";
         for (Map.Entry<String, Double> entry : map_Currencystotal.entrySet()) {
-            rslt = rslt + "<tr><td>" + entry.getKey() + "</td><td align=right><nobr>" + String.valueOf(entry.getValue()) + "</nobr></td></tr>";
+            String crncolor = new String();
+            try {
+                crncolor = map_Currencyscolor.get(entry.getKey());
+            } catch (Exception e) {}
+
+            rslt = rslt + "<tr><td bgcolor='" + crncolor + "'>" + entry.getKey() + "</td><td align=right bgcolor='" + crncolor + "'><nobr>" + String.valueOf(entry.getValue()) + "</nobr></td></tr>";
         }
         rslt = rslt + "</table>";
         rslt = rslt.concat("</body></html>");
         return rslt;
     }
 
+    String getpursecolor(int i){
+        switch (i) {
+            case 0: return MainContext.getString(R.string.clr0);
+            case 1: return MainContext.getString(R.string.clr1);
+            case 2: return MainContext.getString(R.string.clr2);
+            case 3: return MainContext.getString(R.string.clr3);
+            case 4: return MainContext.getString(R.string.clr4);
+            case 5: return MainContext.getString(R.string.clr5);
+            case 6: return MainContext.getString(R.string.clr6);
+            case 7: return MainContext.getString(R.string.clr7);
+            case 8: return MainContext.getString(R.string.clr8);
+            case 9: return MainContext.getString(R.string.clr9);
+        }
+        return "#FFF";
+    }
 }

@@ -119,4 +119,15 @@
     <string name="year">Год</string>
     <string name="makeReport">Сформировать</string>
 
+    <string name="clr0">#EEE</string>
+    <string name="clr1">#99ff99</string>
+    <string name="clr2">#ffffcc</string>
+    <string name="clr3">#ccccff</string>
+    <string name="clr4">#99ccff</string>
+    <string name="clr5">#ffccff</string>
+    <string name="clr6">#e6ff99</string>
+    <string name="clr7">#ccfff5</string>
+    <string name="clr8">#ccfff5</string>
+    <string name="clr9">#ccffcc</string>
+
 </resources>
