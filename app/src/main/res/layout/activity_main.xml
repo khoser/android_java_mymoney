@@ -34,7 +34,7 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:visibility="visible" />
+            android:visibility="gone" />
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
