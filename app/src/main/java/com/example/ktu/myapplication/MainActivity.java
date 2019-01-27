@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_report) {
             setScreen(2);
         } else if (id == R.id.nav_settings) {
-            authform();
+            setScreen(3);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_sync) {
@@ -194,6 +194,9 @@ public class MainActivity extends AppCompatActivity
                 break;
             case 2:
                 fragment = new fragment_report_buttons();
+                break;
+            case 3:
+                fragment = new fragment_settings();
                 break;
             case -1: //webview для вывода отчета кагбэ почти на весь экран
                 fragment = new fragment_report();
@@ -301,6 +304,23 @@ public class MainActivity extends AppCompatActivity
                 });
                 WebView WVblnc = (WebView) fr.getView().findViewById(R.id.webBalance);
                 WVblnc.loadDataWithBaseURL("", MyPockets.HTMLBalances(), "text/html", "utf8", "");
+                break;
+            case  3:
+                Button btn_setconnection = (Button) fr.getView().findViewById(R.id.btnSetConnection);
+                btn_setconnection.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        authform();
+                    }
+                });
+                Button btn_setcolors = (Button) fr.getView().findViewById(R.id.btnSetColors);
+                btn_setcolors.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO: 27.01.19: Запилить фрагмент ностроек цветов используемых валют.
+//                        тут его открывать.
+                    }
+                });
                 break;
             default:
                 Spinner sp_action = (Spinner) fr.getView().findViewById(R.id.spinner_action);

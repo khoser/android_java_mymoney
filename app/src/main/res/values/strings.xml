@@ -130,4 +130,6 @@
     <string name="clr8">#ccfff5</string>
     <string name="clr9">#ccffcc</string>
 
+    <string name="set_connection">Настроить соединение</string>
+    <string name="set_colors">Настроить цвета валют</string>
 </resources>
