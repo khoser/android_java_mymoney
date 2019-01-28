@@ -37,12 +37,13 @@ import com.example.ktu.myapplication.fragment_default.fragment_defaultInterface;
 import com.example.ktu.myapplication.fragment_dolg.fragment_dolgInterface;
 import com.example.ktu.myapplication.fragment_report.fragment_ReportInterface;
 import com.example.ktu.myapplication.fragment_report_buttons.fragment_report_buttonsInterface;
+import com.example.ktu.myapplication.fragment_settings.fragment_settingsInterface;
 
 public class MainActivity extends AppCompatActivity
 //public class MainActivity extends Activity
         implements NavigationView.OnNavigationItemSelectedListener, PocketInterface,
         fragment_defaultInterface, fragment_dolgInterface, fragment_ReportInterface,
-        fragment_report_buttonsInterface {
+        fragment_report_buttonsInterface,fragment_settingsInterface  {
 
     private int selectedScreen;
 
