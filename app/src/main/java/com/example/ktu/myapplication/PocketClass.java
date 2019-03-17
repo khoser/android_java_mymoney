@@ -1150,6 +1150,81 @@ public class PocketClass {
         return rslt;
     }
 
+    /** функция возвращает в формате HTML таблички с бюджетом
+     *
+     * @param curMonth      Отклонение от номера текущего месяца
+     *
+     * @return
+     */
+    public String HTMLBudgets(int curMonth) {
+        Map<String, String> map_pursesCurrencys = new Hashtable<String, String>();
+        Map<String, Double> map_Currencystotal = new Hashtable<String, Double>();
+        Map<String, String> map_Currencyscolor = new Hashtable<String, String>();
+        String[] tmp_pс;
+        ArrayList<String> sl_pc = readFileToStringList(MainContext.getString(R.string.FileName_pursescurrencies));
+        tmp_pс = sl_pc.toArray(new String[sl_pc.size()]);
+        map_pursesCurrencys.clear();
+        map_Currencystotal.clear();
+        map_Currencyscolor.clear();
+        for (String pb : tmp_pс) {
+            if (pb.isEmpty()) continue;
+            if (!pb.contains("/")) continue;
+            String[] tmp_pb = pb.split("/");
+            map_pursesCurrencys.put(tmp_pb[0], tmp_pb[1]);
+            // map_Currencystotal.put(tmp_pb[1], 0.0);
+        }
+
+        String rslt = "<html><body><table width=100% border=0 cellspacing=0>" +
+                "<tr><td align=center>Объект</td><td align=center>Бюджет</td></tr></table>" +
+                "<table width=100% border=1 cellspacing=0>";
+        /*
+        double local;
+        double total;
+        int clri = 0;
+        //String prs;
+        String[] entrst = map_pursesbalances.keySet().toArray(new String[map_pursesbalances.keySet().size()]);
+        Arrays.sort(entrst);
+        for (String prs : entrst) {
+            //prs = entry.getKey();
+            local =  map_pursesbalances.get(prs);
+            String crnc = new String();
+            String crncolor = new String();
+            try {
+                crnc = map_pursesCurrencys.get(prs);
+            } catch (Exception e) {}
+            try {
+                crncolor = map_Currencyscolor.get(crnc);
+            } catch (Exception e) {}
+            if (crncolor == null) {
+                crncolor = getpursecolor(clri);
+                map_Currencyscolor.put(crnc,crncolor);
+                clri+=1;
+                if (clri == 10) {clri=0;}
+            }
+            rslt = rslt + "<tr><td bgcolor='" + crncolor + "'>" + prs + ", " + crnc + "</td><td align=right bgcolor='" + crncolor + "'><nobr>" +String.valueOf(local) + "</nobr></td></tr>";
+            total = 0;
+            try {
+                total = map_Currencystotal.get(crnc);
+            } catch (Exception e) {}
+            map_Currencystotal.put(crnc,total + local);
+        }
+        */
+        rslt = rslt + "</table><br>пока в разработке <br><table width=100% border=1 cellspacing=0>";
+        /*
+        for (Map.Entry<String, Double> entry : map_Currencystotal.entrySet()) {
+            String crncolor = new String();
+            try {
+                crncolor = map_Currencyscolor.get(entry.getKey());
+            } catch (Exception e) {}
+
+            rslt = rslt + "<tr><td bgcolor='" + crncolor + "'>" + entry.getKey() + "</td><td align=right bgcolor='" + crncolor + "'><nobr>" + String.valueOf(entry.getValue()) + "</nobr></td></tr>";
+        }
+        */
+        rslt = rslt + "</table>";
+        rslt = rslt.concat("</body></html>");
+        return rslt;
+    }
+
     String getpursecolor(int i){
         switch (i) {
             case 0: return MainContext.getString(R.string.clr0);

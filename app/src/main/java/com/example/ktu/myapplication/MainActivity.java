@@ -304,7 +304,20 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
                 WebView WVblnc = (WebView) fr.getView().findViewById(R.id.webBalance);
-                WVblnc.loadDataWithBaseURL("", MyPockets.HTMLBalances(), "text/html", "utf8", "");
+                Button btn_budget = (Button) fr.getView().findViewById(R.id.btnBudget);
+                btn_budget.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        FillFrame();
+                    }
+                });
+                if (btn_budget.getText().equals(getString(R.string.viewBudget))) {
+                    WVblnc.loadDataWithBaseURL("", MyPockets.HTMLBalances(), "text/html", "utf8", "");
+                    btn_budget.setText(getString(R.string.viewSaldo));
+                } else {
+                    WVblnc.loadDataWithBaseURL("", MyPockets.HTMLBudgets(0), "text/html", "utf8", "");
+                    btn_budget.setText(getString(R.string.viewBudget));
+                }
                 break;
             case  3:
                 Button btn_setconnection = (Button) fr.getView().findViewById(R.id.btnSetConnection);

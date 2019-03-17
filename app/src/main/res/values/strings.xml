@@ -118,6 +118,8 @@
     <string name="month">Месяц</string>
     <string name="year">Год</string>
     <string name="makeReport">Сформировать</string>
+    <string name="viewBudget">Бюджет</string>
+    <string name="viewSaldo">Фин.рез.</string>
 
     <string name="clr0">#EEE</string>
     <string name="clr1">#99ff99</string>
